@@ -44,7 +44,7 @@ class NewData(Gtk.Assistant):
 		self.set_position(Gtk.WindowPosition.CENTER)
 		self.set_default_size(800, 600)
 
-		################################ PAGINA 1 ######################################################
+		################################ PAGE 1 ######################################################
 		box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 		self.append_page(box)
 		self.set_page_type(box, Gtk.AssistantPageType.INTRO)
@@ -59,7 +59,7 @@ Press \"Continue\" to go on.""")
 		box.pack_start(label, True, True, 0)
 		self.set_page_complete(box, True)
 		
-		################################ PAGINA 2 ######################################################
+		################################ PAGE 2 ######################################################
 		box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 		self.append_page(box)
 		self.set_page_type(box, Gtk.AssistantPageType.CONTENT) # Gtk.AssistantPageType.PROGRESS
@@ -68,7 +68,7 @@ Press \"Continue\" to go on.""")
 		label.set_line_wrap(True)
 		box.pack_start(label, True, True, 0)
 		
-		listbox = Gtk.ListBox()		# TODO: Sicuri che sia la scelta migliore?
+		listbox = Gtk.ListBox()		# TODO: Not sure if it is the correct choice?
 		listbox.set_selection_mode(Gtk.SelectionMode.NONE)
 		
 		row = Gtk.ListBoxRow()
@@ -106,7 +106,7 @@ Press \"Continue\" to go on.""")
 		vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 		hbox.pack_start(vbox, True, True, 0)
 
-		label = Gtk.Label("Number of smoked cigarette in a day", xalign=0)
+		label = Gtk.Label("Number of smoked cigarettes in a day", xalign=0)
 		vbox.pack_start(label, True, True, 0)
 		
 		ad = Gtk.Adjustment(1, 1, 1000, 1, 0, 0)
@@ -135,7 +135,7 @@ Press \"Continue\" to go on.""")
 		box.add(listbox)
 		self.set_page_complete(box, True)
 		
-		################################ PAGINA 3 ######################################################
+		################################ PAGE 3 ######################################################
 		box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 		self.append_page(box)
 		self.set_page_type(box, Gtk.AssistantPageType.CONTENT)
@@ -145,9 +145,9 @@ Press \"Continue\" to go on.""")
 		box.pack_start(label, True, True, 0)
 		self.set_page_complete(box, True)
 		
-		# TODO: goal da aggiungere: [Nome, Quota]
+		# TODO: goals. Array of arrays: [Name, Saved euros]
 
-		################################ PAGINA 4 ######################################################
+		################################ PAGE 4 ######################################################
 		box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 		self.append_page(box)
 		self.set_page_type(box, Gtk.AssistantPageType.CONFIRM)
@@ -157,7 +157,7 @@ Press \"Continue\" to go on.""")
 		box.pack_start(label, True, True, 0)
 		self.set_page_complete(box, True)
 
-		################################ PAGINA 5 ######################################################
+		################################ PAGE 5 ######################################################
 		box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 		self.append_page(box)
 		self.set_page_type(box, Gtk.AssistantPageType.SUMMARY)
@@ -172,8 +172,7 @@ Press \"Continue\" to go on.""")
 		self.costpercig = self.cost.get_value()
 		self.timespent = self.duration.get_value_as_int()
 		self.cigsperday = self.number.get_value_as_int()
-		
-		
+
 	def on_close_clicked(self, *args):
 		self.destroy()
 
@@ -182,7 +181,6 @@ Press \"Continue\" to go on.""")
 
 	def on_complete_toggled(self, checkbutton):
 		self.set_page_complete(self.complete, checkbutton.get_active())
-		
 		
 class Window(Gtk.ApplicationWindow):
 	def __init__(self, *args, **kwargs):
@@ -210,7 +208,6 @@ class Window(Gtk.ApplicationWindow):
 		if os.path.isfile('cards.xml') == True:
 			config = configparser.ConfigParser()
 			conf = config.read("quit_smoking.conf")
-		
 		
 		self.date = datetime.date(2016, 2, 5)
 		self.costpercig = 0.25
